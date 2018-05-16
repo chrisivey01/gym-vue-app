@@ -3,6 +3,7 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import Inputs from './components/Inputs'
 import Home from './components/Home'
+import LiftRepo from './components/LiftRepo'
 
 Vue.config.productionTip = false
 
@@ -18,13 +19,12 @@ const routes =  [
         path: '/barbellCalc',
         name: 'barbellCalc',
         component: Inputs
+    },
+    {
+        path: '/liftRepo',
+        name: 'liftRepo',
+        component: LiftRepo
     }
-    // },
-    // {
-    //     path: '/page2',
-    //     name: 'Page2',
-    //     component: Inputs
-    // }
 ]
 
 const router = new VueRouter({

@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <nav class="navbar navbar-inverse navbar-fixed-top head">
+        <nav  class="navbar navbar-inverse navbar-fixed-top head">
             <ul class="nav navbar-nav">
                 <li class="active spacing"> <router-link to="/">Home</router-link> </li>
                 <li class="spacing"> <router-link to="/barbellCalc">Barbell Calc</router-link> </li>
@@ -13,25 +13,53 @@
     </div>
 </template>
 
+
+
+
 <script>
     import 'bootstrap/dist/css/bootstrap.min.css'
-
     export default{
-        methods:{
-            home(){
 
-            },
-
-            page1(){
-
-            },
-
-            page2(){
-
-            }
-
-        },
     }
+
+    // let isLoggedIn = false;
+    // const API = 'http://localhost:8080/';
+
+    // function loggedIn(){
+    //     console.log('loggedIn()')
+    //     console.log(this.isLoggedIn)
+    //     return isLoggedIn
+    // }
+
+    // export default{
+    //     data:function(){
+    //         return{
+    //             username:'',
+    //             password:''
+    //         }
+    //     },
+    //     methods:{
+    //         login(){
+    //             fetch(API + 'login',
+    //                 {
+    //                     method: 'POST',
+    //                     headers: {
+    //                         'Content-Type': 'application/json',
+    //                     },
+    //                     body: JSON.stringify({
+    //                         username:this.username,
+    //                         password:this.password
+    //                     })
+    //                 })
+    //                 .then(response => response.json())
+    //                 .then(isSuccess => {
+    //                     console.log(isSuccess)
+    //                     //isLoggedIn = isSuccess
+    //                     this.isLoggedIn = isSuccess
+    //                 })
+    //         }
+    //     }
+    // }
 </script>
 
 

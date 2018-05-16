@@ -28,8 +28,6 @@
             return {
                 input: '',
                 weight: '',
-                math: '',
-                what: '',
                 notValid: '',
                 fortyFives: 0,
                 twentyFives: 0,
