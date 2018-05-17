@@ -1,13 +1,16 @@
 <template>
     <div>
         Welcome - if need assistance, go away
+        <div v-if="loginFailure" class="alert alert-danger" role="alert">
+            <strong>Login Failure</strong> Check your credentials and try again...
+        </div>
         <div class="login">
             <div>
                 <div>
                     <label>ID:</label>
                 </div>
                 <div>
-                    <input v-model="username"/>
+                    <input v-model="username" />
                 </div>
             </div>
             <div>
@@ -15,7 +18,7 @@
                     <label>Password:</label>
                 </div>
                 <div>
-                    <input v-model="passWord"/>
+                    <input v-model="passWord" />
                 </div>
             </div>
             <div>
@@ -23,52 +26,41 @@
                     Sign In
                 </button>
             </div>
-            {{this.test}}
         </div>
     </div>
 </template>
 
 <script>
-    const API = 'http://localhost:8080/';
+import auth from "../auth";
 
-    export default {
-
-        name: "Home",
-        // props:['test'],
-        data: function () {
-            return {
-                username: '',
-                passWord: '',
-                test:false
-            }
-        },
-        methods:{
-            login(){
-                fetch(API + 'login',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        username:this.username,
-                        password:this.passWord
-                    })
-                })
-                .then(response => response.json())
-                .then((isSuccess) => {
-                    this.test = isSuccess;
-
-                    return this.test;
-                });
-            }
+export default {
+  name: "Home",
+  // props:['test'],
+  data: function() {
+    return {
+      username: "",
+      passWord: "",
+      loginFailure: false
+    };
+  },
+  methods: {
+    login() {
+      this.loginFailure = false;
+      auth.login(this.username, this.passWord).then(success => {
+        // Deal with success
+        if (success) {
+            this.$router.push('/barbellCalc')
+        } else {
+          this.loginFailure = true;
         }
+      });
     }
+  }
+};
 </script>
 
 <style scoped>
-
-    .login{
-        padding:40px
-    }
+.login {
+  padding: 40px;
+}
 </style>

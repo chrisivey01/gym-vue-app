@@ -2,9 +2,8 @@
   <div id="app">
     <!--<img src="./assets/logo.png">-->
     <Navbar />
-    <!--<Inputs/>-->
-    <!--<Home/>-->
-  </div>
+    <router-view></router-view>
+ </div>
 </template>
 
 <script>

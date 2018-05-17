@@ -2,68 +2,28 @@
 
     <div>
         <nav  class="navbar navbar-inverse navbar-fixed-top head">
-            <ul v-if="test === true" class="nav navbar-nav">
-                <li class="active spacing"> <router-link to="{name:'home', params:{test:false}}">Home</router-link> </li>
+            <ul class="nav navbar-nav">
+                <li class="active spacing"> <router-link to="/">Home</router-link> </li>
                 <li class="spacing"> <router-link to="/barbellCalc">Barbell Calc</router-link> </li>
                 <li class="spacing"> <router-link to="/liftRepo">Lift Repo</router-link> </li>
                 <li class="spacing"><a class="navbar-brand" href="#">Chris Ivey</a></li>
             </ul>
         </nav>
-        <router-view></router-view>
     </div>
 </template>
 
 
-
-
 <script>
     import 'bootstrap/dist/css/bootstrap.min.css'
+
     export default{
 
         data:function(){
             return {
             }
-        }
-    }
+        },
+   }
 
-    // let isLoggedIn = false;
-    // const API = 'http://localhost:8080/';
-
-    // function loggedIn(){
-    //     console.log('loggedIn()')
-    //     console.log(this.isLoggedIn)
-    //     return isLoggedIn
-    // }
-
-    // export default{
-    //     data:function(){
-    //         return{
-    //             username:'',
-    //             password:''
-    //         }
-    //     },
-    //     methods:{
-    //         login(){
-    //             fetch(API + 'login',
-    //                 {
-    //                     method: 'POST',
-    //                     headers: {
-    //                         'Content-Type': 'application/json',
-    //                     },
-    //                     body: JSON.stringify({
-    //                         username:this.username,
-    //                         password:this.password
-    //                     })
-    //                 })
-    //                 .then(response => response.json())
-    //                 .then(isSuccess => {
-    //                     console.log(isSuccess)
-    //                     //isLoggedIn = isSuccess
-    //                     this.isLoggedIn = isSuccess
-    //                 })
-    //         }
-    //     }
-    // }
 </script>
 
 
