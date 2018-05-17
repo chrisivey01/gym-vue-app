@@ -34,6 +34,7 @@
     export default {
 
         name: "Home",
+        // props:['test'],
         data: function () {
             return {
                 username: '',
