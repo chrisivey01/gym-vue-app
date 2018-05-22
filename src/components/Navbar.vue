@@ -2,8 +2,8 @@
 
     <div>
         <nav  class="navbar navbar-inverse navbar-fixed-top head">
-            <ul v-if="test === true" class="nav navbar-nav">
-                <li class="active spacing"> <router-link to="{name:'home', params:{test:false}}">Home</router-link> </li>
+            <ul class="nav navbar-nav">
+                <li class="active spacing"> <router-link to="/">Home</router-link> </li>
                 <li class="spacing"> <router-link to="/barbellCalc">Barbell Calc</router-link> </li>
                 <li class="spacing"> <router-link to="/liftRepo">Lift Repo</router-link> </li>
                 <li class="spacing"><a class="navbar-brand" href="#">Chris Ivey</a></li>

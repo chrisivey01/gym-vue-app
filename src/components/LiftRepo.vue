@@ -23,75 +23,64 @@
             </div>
 
 
-            <div class="setContainer">
+            <div class="workoutContainer">
                 <div>
-                    <label>Sets</label>
+                    <label>Add Workout</label>
                 </div>
                 <div>
-                    <b-dropdown  v-bind:text=counter class="m-md-2">
-                        <b-dropdown-item @click="twoSets()">2</b-dropdown-item>
-                        <b-dropdown-item @click="threeSets()">3</b-dropdown-item>
-                        <b-dropdown-item @click="fourSets()">4</b-dropdown-item>
-                        <b-dropdown-item @click="fiveSets()">5</b-dropdown-item>
-                    </b-dropdown>
+                    <div>
+                        <label>Date</label>
+                        <input v-model="date"/>
+                        <button>Date Picker</button>
+                    </div>
                 </div>
 
+
+
+                <!--hmmm-->
                 <div>
-                    <div v-if="show1st2nd === 'A'">
-                        <label>1st Set</label>
-                        <input v-model="firstSet"/>
+                    <div>
+                        <label>Set</label>
+                        <span @click="test()"><plus-circle-outline-icon /></span>
+                        <div v-for="(workout, index) in workouts" >
+                            <label>Set</label>
+                            <input id="weight" v-model="weight[workout]" placeholder="Weight" />
+                            <input id="reps" v-model="reps[workout]" placeholder="Reps"  />
+                        </div>
                     </div>
-                    <div v-if="show1st2nd === 'A'">
-                        <label>2nd Set</label>
-                        <input/>
+
                     </div>
-                    <div v-if="show3rd === 'B'">
-                        <label>3rd Set</label>
-                        <input/>
-                    </div>
-                    <div v-if="show4th === 'C'">
-                        <label>4th Set</label>
-                        <input/>
-                    </div>
-                    <div v-if="show5th === 'D'">
-                        <label>5th Set</label>
-                        <input/>
-                    </div>
-                    <div v-if="show1st2nd === 'A'">
-                        <button @click="test()"> Submit </button>
-                    </div>
-                </div>
+                <button @click="submitWorkout()"> Submit </button>
             </div>
-
-
         </div>
     </div>
 </template>
 
 <script>
     import SquatTable from './SquatTable';
+    import PlusCircleOutlineIcon from "vue-material-design-icons/plus-circle-outline.vue"
+    import liftRepo from '../liftRepo'
+
 
     export default {
         components: {
-            SquatTable
+            SquatTable,
+            PlusCircleOutlineIcon
         },
-        data:function(){
+        data(){
             return{
                 lift:'Select your lift',
                 squat:false,
                 bench:false,
                 deadLift:false,
 
+                workouts: [
+                    'set'
+                ],
 
-                counter: 'Set Counter',
-                show1st2nd:'',
-                show3rd:'',
-                show4th:'',
-                show5th:'',
-
-                firstSet:''
-
-
+                date:'',
+                weight:[],
+                reps:[],
             }
         },
         methods:{
@@ -107,45 +96,55 @@
                 this.squat = false,
                 this.deadLift = false,
                 this.lift = "Bench"
+
             },
             deadLiftRepo(){
                 this.deadLift = true;
                 this.bench = false;
                 this.squat = false;
                 this.lift = "Deadlift"
+            },
 
+
+            setWeight(event,index){
+                var workout = event.target.value;
+                workout.workout = workout
             },
-            twoSets(){
-                this.counter = "2 Sets",
-                    this.show1st2nd = 'A',
-                    this.show3rd = '',
-                    this.show4th = '',
-                    this.show5th = ''
+
+            setReps(event,workout){
+                var workout = event.target.value;
+                workout.workout = workout
             },
-            threeSets(){
-                this.counter = "3 Sets",
-                    this.show1st2nd = 'A',
-                    this.show3rd = 'B',
-                    this.show4th = '',
-                    this.show5th = ''
-            },
-            fourSets(){
-                this.counter = "4 Sets",
-                    this.show1st2nd = 'A',
-                    this.show3rd = 'B',
-                    this.show4th = 'C',
-                    this.show5th = ''
-            },
-            fiveSets(){
-                this.counter = "5 Sets",
-                    this.show1st2nd = 'A',
-                    this.show3rd = 'B',
-                    this.show4th = 'C',
-                    this.show5th = 'D'
-            },
+
+
+
 
             test(){
-                alert(this.firstSet)
+                let i = 0;
+                i++;
+                this.workouts.push("newSet"+i);
+            },
+
+            submitWorkout(){
+                let workoutSetList = [{
+                    reps: 3,
+                    weight: 225
+                },{
+                    reps: 3,
+                    weight: 235
+                },{
+                    reps: 3,
+                    weight: 245
+                }]
+
+                let workout = {
+                    'userId' : 1,
+                    'date' : new Date(),
+                    'workoutType' : this.lift,
+                    'workoutSetList' : workoutSetList
+                }
+
+                liftRepo.sendWorkout(workout);
             }
         }
 
@@ -154,7 +153,7 @@
 
 <style scoped>
 
-    .setContainer{
+    .workoutContainer{
         float:left;
     }
 

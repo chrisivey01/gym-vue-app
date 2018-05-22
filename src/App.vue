@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+
+      <plus-circle-outline-icon/>
     <!--<img src="./assets/logo.png">-->
     <Navbar />
     <!--<Inputs/>-->
@@ -17,6 +19,8 @@ import StoreLifts from './components/StoreLifts'
 import SquatTable from './components/SquatTable'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import BootstrapVue from 'bootstrap-vue'
+import PlusCircleOutlineIcon from "vue-material-design-icons/plus-circle-outline.vue"
+
 
 Vue.use(BootstrapVue)
 
@@ -28,7 +32,8 @@ export default {
       Inputs,
       Home,
       StoreLifts,
-      SquatTable
+      SquatTable,
+      PlusCircleOutlineIcon
   }
 }
 </script>

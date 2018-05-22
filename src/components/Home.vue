@@ -4,6 +4,9 @@
         <div class="login">
             <div>
                 <div>
+                    <label>{{loginFailed}}</label>
+                </div>
+                <div>
                     <label>ID:</label>
                 </div>
                 <div>
@@ -15,51 +18,44 @@
                     <label>Password:</label>
                 </div>
                 <div>
-                    <input v-model="passWord"/>
+                    <input v-model="password"/>
                 </div>
             </div>
             <div>
-                <button @click="login()">
+                <button @click="loginHome()">
                     Sign In
                 </button>
             </div>
-            {{this.test}}
         </div>
     </div>
 </template>
 
 <script>
-    const API = 'http://localhost:8080/';
 
+    import auth from '../auth'
     export default {
 
         name: "Home",
         // props:['test'],
-        data: function () {
+        data() {
             return {
                 username: '',
-                passWord: '',
-                test:false
+                password: '',
+                loginFailed:''
             }
         },
         methods:{
-            login(){
-                fetch(API + 'login',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        username:this.username,
-                        password:this.passWord
-                    })
-                })
-                .then(response => response.json())
-                .then((isSuccess) => {
-                    this.test = isSuccess;
+            loginHome(){
 
-                    return this.test;
+                auth.login(this.username, this.password).then(success=> {
+
+                    if(success){
+                        this.$router.push('/barbellCalc')
+                        console.log("worked!")
+                    }else{
+                        console.log("failed!")
+                        this.loginFailed = "Login failed, try again."
+                    }
                 });
             }
         }
