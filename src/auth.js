@@ -1,9 +1,9 @@
 const API = 'http://localhost:8080/';
 let loggedIn = false;
 
-export default{
+export default {
 
-    login(username, password){
+    login(username, password) {
         return fetch(API + 'login',
             {
                 method: 'POST',
@@ -33,7 +33,7 @@ export default{
         // });
     },
 
-    loggedIn(){
+    loggedIn() {
         return loggedIn;
     }
 }

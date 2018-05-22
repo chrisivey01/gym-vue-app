@@ -5,8 +5,6 @@ import Inputs from './components/Inputs'
 import Home from './components/Home'
 import LiftRepo from './components/LiftRepo'
 import auth from './auth'
-import "vue-material-design-icons/styles.css"
-
 
 Vue.config.productionTip = false
 
@@ -45,7 +43,7 @@ router.beforeEach((to, from, next) => {
         if(!auth.loggedIn()){
             next({
                 path:'/',
-                query: {redirect:to.fullPath}
+                query: {redirect:'/barbellCalc'}
             })
         }else{
             next()
@@ -54,12 +52,6 @@ router.beforeEach((to, from, next) => {
         next()
     }
 })
-
-//             next()
-//         }
-//     }next()
-// })
-
 
 
 

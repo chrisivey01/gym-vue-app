@@ -1,6 +1,9 @@
 <template>
     <div>
         Welcome - if need assistance, go away
+        <div v-if="loginFailed" class="alert alert-danger" role="alert">
+            <strong>Login Failure</strong> Check your credentials and try again...
+        </div>
         <div class="login">
             <div>
                 <div>
@@ -10,7 +13,7 @@
                     <label>ID:</label>
                 </div>
                 <div>
-                    <input v-model="username"/>
+                    <input v-model="username" />
                 </div>
             </div>
             <div>
@@ -59,12 +62,11 @@
                 });
             }
         }
-    }
+    };
 </script>
 
 <style scoped>
-
-    .login{
-        padding:40px
-    }
+.login {
+  padding: 40px;
+}
 </style>
