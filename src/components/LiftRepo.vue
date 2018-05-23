@@ -42,7 +42,7 @@
                     <div>
                         <label>Set</label>
                         <span @click="test()"><plus-circle-outline-icon /></span>
-                        <div v-for="(workout, index) in workouts" >
+                        <div v-for="(workout, index) in workouts" :key="index">
                             <label>Set</label>
                             <input id="weight" v-model="weight[workout]" placeholder="Weight" />
                             <input id="reps" v-model="reps[workout]" placeholder="Reps"  />
@@ -81,6 +81,7 @@
                 date:'',
                 weight:[],
                 reps:[],
+                add:0
             }
         },
         methods:{
@@ -106,23 +107,22 @@
             },
 
 
-            setWeight(event,index){
-                var workout = event.target.value;
-                workout.workout = workout
-            },
-
-            setReps(event,workout){
-                var workout = event.target.value;
-                workout.workout = workout
-            },
+            // setWeight(event,index){
+            //     var workout = event.target.value;
+            //     workout.workout = workout
+            // },
+            //
+            // setReps(event,workout){
+            //     var workout = event.target.value;
+            //     workout.workout = workout
+            // },
 
 
 
 
             test(){
-                let i = 0;
-                i++;
-                this.workouts.push("newSet"+i);
+                this.add++;
+                this.workouts.push("newSet"+this.add);
             },
 
             submitWorkout(){
