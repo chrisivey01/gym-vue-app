@@ -122,29 +122,42 @@
 
             test(){
                 this.add++;
-                this.workouts.push("newSet"+this.add);
+                this.workouts.push("set"+this.add);
             },
 
             submitWorkout(){
-                let workoutSetList = [{
-                    reps: 3,
-                    weight: 225
-                },{
-                    reps: 3,
-                    weight: 235
-                },{
-                    reps: 3,
-                    weight: 245
-                }]
+                let i = 0;
 
-                let workout = {
-                    'userId' : 1,
-                    'date' : new Date(),
-                    'workoutType' : this.lift,
-                    'workoutSetList' : workoutSetList
+                for(i; i<Object.keys(this.reps).length; i++){
+                    console.log(this.reps.set+i);
                 }
-
-                liftRepo.sendWorkout(workout);
+                // for(let rep of this.reps){
+                //     console.log(rep)
+                // }
+                // let workoutSetList =
+                //     [{
+                //     reps:this.reps.set,
+                //     weights:this.weight.set
+                //     }]
+                // // [{
+                // //     reps: 3,
+                // //     weight: 225
+                // // },{
+                // //     reps: 3,
+                // //     weight: 235
+                // // },{
+                // //     reps: 3,
+                // //     weight: 245
+                // // }]
+                //
+                // let workout = {
+                //     'userId' : 1,
+                //     'date' : new Date(),
+                //     'workoutType' : this.lift,
+                //     'workoutSetList' : workoutSetList
+                // }
+                //
+                // liftRepo.sendWorkout(workout);
             }
         }
 
