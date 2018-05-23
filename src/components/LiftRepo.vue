@@ -30,7 +30,7 @@
                 <div>
                     <div>
                         <label>Date</label>
-                        <input v-model="date"/>
+                        <input type="date" v-model="date"/>
                         <button>Date Picker</button>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                 deadLift:false,
 
                 workouts: [
-                    'set'
+                    'set0'
                 ],
 
                 date:'',
@@ -127,37 +127,25 @@
 
             submitWorkout(){
                 let i = 0;
+                let workoutSetList = [];
+                let weightsKeys = Object.keys(this.weight)
+                let repsKeys = Object.keys(this.reps);
 
-                for(i; i<Object.keys(this.reps).length; i++){
-                    console.log(this.reps.set+i);
+                for(i; i < weightsKeys.length; i++){
+                    workoutSetList.push({
+                        weight: this.weight[weightsKeys[i]],
+                        reps: this.reps[repsKeys[i]]
+                    })
                 }
-                // for(let rep of this.reps){
-                //     console.log(rep)
-                // }
-                // let workoutSetList =
-                //     [{
-                //     reps:this.reps.set,
-                //     weights:this.weight.set
-                //     }]
-                // // [{
-                // //     reps: 3,
-                // //     weight: 225
-                // // },{
-                // //     reps: 3,
-                // //     weight: 235
-                // // },{
-                // //     reps: 3,
-                // //     weight: 245
-                // // }]
-                //
-                // let workout = {
-                //     'userId' : 1,
-                //     'date' : new Date(),
-                //     'workoutType' : this.lift,
-                //     'workoutSetList' : workoutSetList
-                // }
-                //
-                // liftRepo.sendWorkout(workout);
+
+                let workout = {
+                    'userId' : 1,
+                    'date' : this.date,
+                    'workoutType' : this.lift,
+                    'workoutSetList' : workoutSetList
+                }
+
+                liftRepo.sendWorkout(workout);
             }
         }
 
