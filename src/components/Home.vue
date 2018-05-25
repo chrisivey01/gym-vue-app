@@ -53,7 +53,7 @@
                 auth.login(this.username, this.password).then(success=> {
 
                     if(success){
-                        this.$router.push('/barbellCalc')
+                        this.$router.push('/liftRepo')
                         console.log("worked!")
                     }else{
                         console.log("failed!")

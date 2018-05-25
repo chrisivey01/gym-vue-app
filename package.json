@@ -12,7 +12,8 @@
     "bootstrap-vue": "^2.0.0-rc.9",
     "vue": "^2.5.16",
     "vue-material-design-icons": "^1.4.0",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuejs-datepicker-better": "^0.9.27"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.10",

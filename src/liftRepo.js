@@ -3,7 +3,6 @@ const API = 'http://localhost:8080/';
 export default {
 
     sendWorkout(workout ) {
-        console.log(JSON.stringify(workout))
         return fetch(API + '/workout',
             {
                 method: 'post',

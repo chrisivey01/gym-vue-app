@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-
-      <plus-circle-outline-icon/>
-    <!--<img src="./assets/logo.png">-->
     <Navbar />
     <router-view></router-view>
  </div>
@@ -14,11 +11,11 @@ import Vue from 'vue'
 import Navbar from './components/Navbar'
 import Inputs from './components/Inputs'
 import Home from './components/Home'
-import StoreLifts from './components/StoreLifts'
-import SquatTable from './components/SquatTable'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import BootstrapVue from 'bootstrap-vue'
 import PlusCircleOutlineIcon from "vue-material-design-icons/plus-circle-outline.vue"
+import Datepicker from 'vuejs-datepicker-better';
+
 
 
 Vue.use(BootstrapVue)
@@ -30,9 +27,8 @@ export default {
       Navbar,
       Inputs,
       Home,
-      StoreLifts,
-      SquatTable,
-      PlusCircleOutlineIcon
+      PlusCircleOutlineIcon,
+      Datepicker
   }
 }
 </script>

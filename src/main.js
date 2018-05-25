@@ -19,18 +19,20 @@ const routes =  [
         // meta: {requiresAuth:true}
     },
     {
-        path: '/barbellCalc',
-        name: 'barbellCalc',
-        component: Inputs,
-        meta: {requiresAuth:true}
-    },
-    {
         path: '/liftRepo',
         name: 'liftRepo',
         component: LiftRepo,
         meta: {requiresAuth:true}
 
+    },
+
+    {
+        path: '/barbellCalc',
+        name: 'barbellCalc',
+        component: Inputs,
+        meta: {requiresAuth:true}
     }
+
 ]
 
 const router = new VueRouter({
@@ -43,7 +45,7 @@ router.beforeEach((to, from, next) => {
         if(!auth.loggedIn()){
             next({
                 path:'/',
-                query: {redirect:'/barbellCalc'}
+                query: {redirect:'/home'}
             })
         }else{
             next()
