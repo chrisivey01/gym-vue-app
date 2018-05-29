@@ -97,7 +97,7 @@
     import PlusCircleOutlineIcon from "vue-material-design-icons/plus-circle-outline.vue"
     import liftRepo from '../liftRepo'
     import getWorkouts from '../getWorkouts'
-    import Datepicker from 'vuejs-datepicker-better';
+    import Datepicker from 'vuejs-datepicker';
 
 
 
