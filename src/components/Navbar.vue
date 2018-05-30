@@ -1,6 +1,6 @@
 <template>
 
-    <div>
+    <div class="navContainer">
         <nav  class="navbar navbar-inverse navbar-fixed-top head">
             <ul class="nav navbar-nav">
                 <li class="active spacing"> <router-link to="/">Home</router-link> </li>
@@ -36,6 +36,12 @@
     }
     .navbar-nav{
         flex-direction: unset !important;
+
+    }
+
+    .navContainer{
+        background-color: #404040;
+
     }
 
     .navbar{

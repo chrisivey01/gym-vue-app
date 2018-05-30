@@ -10,17 +10,29 @@
                 <label class="error"> {{weights.errors}} </label>
             </div>
             <div v-else class="weights">
-                <label> 45lbs: </label>
-                <label> {{weights.fortyFives}} </label>
-                <label> 25lbs: </label>
-                <label> {{weights.twentyFives}} </label>
-                <label> 10lbs: </label>
-                <label> {{weights.tens}} </label>
-                <label> 5lbs: </label>
-                <label> {{weights.fives}} </label>
-                <label> 2.5lbs: </label>
-                <label> {{weights.twoPointFives}}</label>
-                <label v-if="weights.extraWeight !== 0"> Extra weight: {{weights.extraWeight}}lbs</label>
+                <div>
+                    <label> 45lbs: </label>
+                    <label> {{weights.fortyFives}} </label>
+                </div>
+                <div>
+                    <label> 25lbs: </label>
+                    <label> {{weights.twentyFives}} </label>
+                </div>
+                <div>
+                    <label> 10lbs: </label>
+                    <label> {{weights.tens}} </label>
+                </div>
+                <div>
+                    <label> 5lbs: </label>
+                    <label> {{weights.fives}} </label>
+                </div>
+                <div>
+                    <label> 2.5lbs: </label>
+                    <label> {{weights.twoPointFives}}</label>
+                </div>
+                <div>
+                    <label v-if="weights.extraWeight !== 0"> Extra weight: {{weights.extraWeight}}lbs</label>
+                </div>
             </div>
         </div>
         <button @click="alert()">Calculate</button>
