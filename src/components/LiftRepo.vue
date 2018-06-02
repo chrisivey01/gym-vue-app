@@ -4,6 +4,9 @@
             <div class="workoutContainer">
                 <div>
                     <label>Add Workout</label>
+                    <div>
+                        {{redoInputs}}
+                    </div>
                 </div>
                 <div>
                     <div>
@@ -37,13 +40,13 @@
                 <div>
                     <div v-if="squat === true">
                         <div class="displayLifts">
-                            <ul class="list-group"  v-for="item in items">
+                            <ul class="list-group"  v-for="item in items" :key="item.date">
                                 <li class="list-group-item">
                                     Workout Date: {{getMyDate(item.date)}}
                                     <br />
                                     Workout Type: {{item.workoutType}}
                                     <br />
-                                    <div v-for="set in item.workoutSetList">
+                                    <div v-for="set in item.workoutSetList" :key="set.weight">
                                         Weight: {{set.weight}} Reps: {{set.reps}}
                                         <br />
                                     </div>
@@ -54,13 +57,13 @@
                     </div>
                     <div v-else-if="bench === true">
                         <div class="displayLifts">
-                            <ul class="list-group"  v-for="item in items">
+                            <ul class="list-group"  v-for="item in items" :key="item.date">
                                 <li class="list-group-item">
                                     Workout Date: {{getMyDate(item.date)}}
                                     <br />
                                     Workout Type: {{item.workoutType}}
                                     <br />
-                                    <div v-for="set in item.workoutSetList">
+                                    <div v-for="set in item.workoutSetList" :key="set.weight">
                                         Weight: {{set.weight}} Reps: {{set.reps}}
                                         <br />
                                     </div>
@@ -72,13 +75,13 @@
 
                     <div v-else-if="deadLift === true">
                         <div class="displayLifts">
-                            <ul class="list-group"  v-for="item in items">
+                            <ul class="list-group"  v-for="item in items" :key="item.date">
                                 <li class="list-group-item">
                                     Workout Date: {{getMyDate(item.date)}}
                                     <br />
                                     Workout Type: {{item.workoutType}}
                                     <br />
-                                    <div v-for="set in item.workoutSetList">
+                                    <div v-for="set in item.workoutSetList" :key="set.weight">
                                         Weight: {{set.weight}} Reps: {{set.reps}}
                                         <br />
                                     </div>
@@ -123,7 +126,9 @@
                 add:0,
 
                 format: "MM-dd-yyyy",
-                items:[]
+                items:[],
+
+                redoInputs:''
             }
         },
         methods:{
@@ -171,26 +176,47 @@
 
             submitWorkout(){
                 let i = 0;
+                let isIntCheck = 0;
+                let setZero = 0;
                 let workoutSetList = [];
                 let weightsKeys = Object.keys(this.weight)
                 let repsKeys = Object.keys(this.reps);
 
 
-                for(i; i < weightsKeys.length; i++){
-                    workoutSetList.push({
-                        weight: this.weight[weightsKeys[i]],
-                        reps: this.reps[repsKeys[i]]
-                    })
+                //has to be a number to be submitted to server
+                for(isIntCheck; isIntCheck<weightsKeys.length; isIntCheck++){
+                        if(
+                            isNaN(this.weight[weightsKeys[isIntCheck]]) || isNaN(this.reps[repsKeys[isIntCheck]])
+                        )
+                        {
+                            this.redoInputs = "Values must be numbers";
+                        }else{
+
+                            //pushes to server+db
+                            for(i; i < weightsKeys.length; i++){
+                                workoutSetList.push({
+                                    weight: this.weight[weightsKeys[i]],
+                                    reps: this.reps[repsKeys[i]]
+                                })
+                            }
+                            this.redoInputs = "";
+
+                            let workout = {
+                                'userId' : 1,
+                                'date' : this.date,
+                                'workoutType' : this.lift,
+                                'workoutSetList' : workoutSetList
+                            }
+
+                            liftRepo.sendWorkout(workout);
+                        }
                 }
 
-                let workout = {
-                    'userId' : 1,
-                    'date' : this.date,
-                    'workoutType' : this.lift,
-                    'workoutSetList' : workoutSetList
+                //set inputs to blank
+                for(setZero; setZero<weightsKeys.length; setZero++) {
+                    this.weight[weightsKeys[setZero]] = '';
+                    this.reps[repsKeys[setZero]] = '';
                 }
-
-                liftRepo.sendWorkout(workout);
             }
         }
 
