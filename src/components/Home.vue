@@ -8,6 +8,7 @@
             <div>
                 <div>
                     <label>{{loginFailed}}</label>
+                    <label>{{accountCreated}}</label>
                 </div>
                 <div>
                     <label>ID:</label>
@@ -21,12 +22,17 @@
                     <label>Password:</label>
                 </div>
                 <div>
-                    <input v-model="password"/>
+                    <input type=password v-model="password"/>
                 </div>
             </div>
             <div>
                 <button @click="loginHome()">
                     Sign In
+                </button>
+            </div>
+            <div>
+                <button @click="create()">
+                    Create Account
                 </button>
             </div>
         </div>
@@ -39,16 +45,17 @@
     export default {
 
         name: "Home",
-        // props:['test'],
         data() {
             return {
                 username: '',
                 password: '',
-                loginFailed:''
+                loginFailed:'',
+                accountCreated:''
             }
         },
         methods:{
             loginHome(){
+                this.accountCreated = "";
 
                 auth.login(this.username, this.password).then(success=> {
 
@@ -60,6 +67,16 @@
                         this.loginFailed = "Login failed, try again."
                     }
                 });
+            },
+
+            create(){
+                auth.createAccount(this.username, this.password).then( success=>{
+                    if(success){
+                        this.accountCreated = "Yay! Account made"
+                    }else{
+                        this.accountCreated = "Try again"
+                    }
+                })
             }
         }
     };
